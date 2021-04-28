@@ -26,90 +26,93 @@ namespace Operations
             string jsonString = JsonConvert.SerializeObject(utilisateur, Formatting.Indented);
             Console.WriteLine(jsonString);
 
-            Drilling drillingTest = new Drilling();
-            jsonString = JsonConvert.SerializeObject(drillingTest, Formatting.Indented);
+            JsonOperation jsonOperationTest = new JsonOperation();
+            jsonString = JsonConvert.SerializeObject(jsonOperationTest, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             Console.WriteLine(jsonString);
 
-            Drilling drilling = new Drilling()
+            JsonOperation jsonOperation = new JsonOperation()
             {
-                UseDefaults = true,
                 AlternativeFlowMode = "OnNeed",
-                // Try to get a succeed request with all the parameters if possible.
-
-
-                PHDR = 5,
-                // PHDN = 5, se trouve en bas dans la liste
-                // PHDX = 5, pareil
-                PHDNTOL = 5,
-                PHDXTOL = 5,
-                MachineID = "machine_cc_DefaultallCoolants",
-
-                RecommendAdditionalAssemblyItems = true,
-                EnableSendToButton = true,
-                PreselectedItemMaximumRank = 3,
-                AssembledItemMaximumRank = 1,
-                UnitSystem = "Metric",
-                Language = "en-US",
-                UserName = "TestUser02",
-                CountryCode = "fr",
-
-                BHFP = true, //Hope type: Blind hole
-                CHFP = true, // Cross hole
-                DEPTHMF = 4.0, //Profondeur
-                DM = 10.0, //Diamètre
-                DTOLU = 3.0, //Upper tolerance
-                DTOLL = 2.0, //Lower tolerance
-                FIX = "ExcellentStability",
-                IENFP = true, //Inclined entry angle
-                IEXFP = true, //Inclined exit function
-                TCHA = "5", //Tolérance class
-                THFP = true, //Hole type: Through hole
-                SMFP = true, //Stacked
-                PHDN = 5, //Pre hole min diameter
-                PHDX = 5, //Pre hole max diameter
-                
-                MaterialID = new MaterialID()
+                TaskInput = new Drilling()
                 {
-                    MaterialId = "Werkstoffnummer DIN#401#P2.3.Z.AN#HRDHB#240",
-                    HardnessScale = "HRDHRC",
-                    Hardness = 5.0,
-                },
+                    UseDefaultValues = true,
+                    // Try to get a succeed request with all the parameters if possible.
 
-                MaterialData = new MaterialData()
-                {
-                    MaterialName = "",
-                    MaterialStandard = "5",
-                    HardnessScale = "",
-                    Hardness = 5.0
-                },
 
-                CuttingTools = new List<CuttingTools>
-                {
-                    new CuttingTools
+                    PHDR = 5,
+                    // PHDN = 5, se trouve en bas dans la liste
+                    // PHDX = 5, pareil
+                    PHDNTOL = 5,
+                    PHDXTOL = 5,
+                    MachineID = "machine_cc_DefaultallCoolants",
+
+                    RecommendAdditionalAssemblyItems = true,
+                    EnableSendToButton = true,
+                    PreselectedItemMaximumRank = 3,
+                    AssembledItemMaximumRank = 1,
+                    UNITSYSTEM = "Metric",
+                    LANGUAGE = "en-US",
+                    UserName = "TestUser02",
+                    CountryCode = "fr",
+
+                    BHFP = true, //Hope type: Blind hole
+                    CHFP = true, // Cross hole
+                    DEPTHMF = 4.0, //Profondeur
+                    DM = 10.0, //Diamètre
+                    DTOLU = 3.0, //Upper tolerance
+                    DTOLL = 2.0, //Lower tolerance
+                    FIX = "ExcellentStability",
+                    IENFP = true, //Inclined entry angle
+                    IEXFP = true, //Inclined exit function
+                    TCHA = "5", //Tolérance class
+                    THFP = true, //Hole type: Through hole
+                    SMFP = true, //Stacked
+                    PHDN = 5, //Pre hole min diameter
+                    PHDX = 5, //Pre hole max diameter
+
+                    MaterialID = new MaterialID()
                     {
-                        Brand = "TIX",
-                        OrderCode = "DC170-03-10.000A1-WJ30EJ"
-                    }
-                },
-               
-                CoolantStyle = new List<string>
-                {
-                    "INT",
-                    "EXT",
-                    "DRY"
-                },
+                        MaterialId = "Werkstoffnummer DIN#401#P2.3.Z.AN#HRDHB#240",
+                        HardnessScale = "HRDHRC",
+                        Hardness = 5.0
+                    },
 
-                CoolantType = new List<string>
-                {
-                    "AIR",
-                    "OIL",
-                    "EM5",
-                    "EM10",
-                    "MQL"
+                    MaterialData = new MaterialData()
+                    {
+                        MaterialName = "",
+                        MaterialStandard = "5",
+                        HardnessScale = "",
+                        Hardness = 5.0
+                    },
+
+                    CuttingTools = new List<CuttingTools>
+                    {
+                        new CuttingTools
+                        {
+                            Brand = "TIX",
+                            OrderCode = "DC170-03-10.000A1-WJ30EJ"
+                        }
+                    },
+
+                    COOLANTSTYLE = new List<string>
+                    {
+                        "INT",
+                        "EXT",
+                        "DRY"
+                    },
+
+                    COOLANTTYPE = new List<string>
+                    {
+                        "AIR",
+                        "OIL",
+                        "EM5",
+                        "EM10",
+                        "MQL"
+                    }
                 }
             };
 
-            jsonString = JsonConvert.SerializeObject(drilling, Formatting.Indented);
+            jsonString = JsonConvert.SerializeObject(jsonOperation, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             Console.WriteLine(jsonString);
 
             Walter.ApiHelper.InitializeClient();
@@ -119,10 +122,10 @@ namespace Operations
                 jsonString = request.Result; //convertToJson(request);
                 Console.WriteLine(jsonString);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-        }
+        }        
     }
-}
+ }

@@ -6,17 +6,17 @@ namespace JsonParser
 {
     class MaterialData
     {
-        public string MaterialName { get; set; }
-        public string MaterialStandard { get; set; }
-        public string HardnessScale { get; set; }
-        public double Hardness { get; set; }
+        public string MaterialName { get; set; } = "";
+        public string MaterialStandard { get; set; } = "";
+        public string HardnessScale { get; set; } = "";
+        public double? Hardness { get; set; }
     }
 
     class MaterialID
     {
-        public string MaterialId { get; set; }
+        public string MaterialId { get; set; } = "1.2826#Werkstoffnummer DIN#401#P2.3.Z.AN#HRDHB#240";
         public string HardnessScale { get; set; }
-        public double Hardness { get; set; }
+        public double? Hardness { get; set; }
     }
 
     class CuttingTools
