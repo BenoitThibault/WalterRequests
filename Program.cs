@@ -1,5 +1,6 @@
 ﻿using JsonParser;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,24 +11,8 @@ namespace Operations
     {
         static void Main(string[] args)
         {
-            var utilisateur = new Utilisateur
-            {
-                Nom = "Thibault",
-                Prenom = "Benoit",
-                Age = 19,
-                DateCreation = DateTime.Now,
-                Role = "Developpeur",
-                ListeDeStrings = new List<string>
-                {
-                    "test numéro 2",
-                    "test numéro 4"
-                }
-            };
-            string jsonString = JsonConvert.SerializeObject(utilisateur, Formatting.Indented);
-            Console.WriteLine(jsonString);
-
             JsonOperation jsonOperationTest = new JsonOperation();
-            jsonString = JsonConvert.SerializeObject(jsonOperationTest, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(jsonOperationTest, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             Console.WriteLine(jsonString);
 
             JsonOperation jsonOperation = new JsonOperation()
@@ -115,17 +100,27 @@ namespace Operations
             jsonString = JsonConvert.SerializeObject(jsonOperation, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             Console.WriteLine(jsonString);
 
-            Walter.ApiHelper.InitializeClient();
+            var response = Walter.ApiHelper.GetResponse(jsonOperation);
+            // Parsing JSON content into element-node JObject
+            var jObject = JObject.Parse(response.Content);
+            Console.WriteLine(response);
+
+            //Extracting Node element using Getvalue method
+            JsonParser.TaskOutput taskOutput = jObject.GetValue("TaskOutput").ToObject<JsonParser.TaskOutput>;
+
+            Console.WriteLine(taskOutput.COOLANTSTYLE);
+            
+            /*
             try
             {
-                Task<string> request = Walter.WalterProcessor.displayRequest();
+                Task<string> request = Walter.WalterProcessor.DisplayRequest();
                 jsonString = request.Result; //convertToJson(request);
                 Console.WriteLine(jsonString);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-            }
+            } */
         }        
     }
  }

@@ -18,3 +18,4 @@ C:\Users\BenoitThibault\source\repos\Operations\obj\Debug\net5.0\Operations.genr
 C:\Users\BenoitThibault\source\repos\Operations\obj\Debug\net5.0\Operations.csprojAssemblyReference.cache
 C:\Users\BenoitThibault\source\repos\Operations\bin\Debug\net5.0\System.Net.Http.Formatting.dll
 C:\Users\BenoitThibault\source\repos\Operations\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\BenoitThibault\source\repos\Operations\bin\Debug\net5.0\RestSharp.dll
