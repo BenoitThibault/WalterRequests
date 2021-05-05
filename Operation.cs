@@ -9,8 +9,8 @@ public class Operation
 	public string UserName { get; set; } = "TestUser02";
 	public bool? UseFirstResult { get; set; } //Use First Result
 	public List<CuttingTools> CuttingTools { get; set; } = new List<CuttingTools>() { new CuttingTools() };//Array of tools specifying assembly to calculate
-	public string? AssemblyName { get; set; } //User defined name of assembly
-	public List<string>? Assemblies { get; set; } //Assemblies for calculations
+	public string AssemblyName { get; set; } = null; //User defined name of assembly
+	public List<string> Assemblies { get; set; } = null; //Assemblies for calculations
 	public int? LongProcessingFilterId { get; set; } //Long Processing Filter Id
 	public bool? CalculateWithAssembliesPrices { get; set; } //Calculate with Assemblies Prices
 	public bool RecommendAdditionalAssemblyItems { get; set; } = true; //Recommend Additional Assembly Items
