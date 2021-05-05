@@ -28,5 +28,6 @@ namespace JsonParser
     public class TaskOutput
     {
         public string COOLANTSTYLE { get; set; }
+
     }
 }

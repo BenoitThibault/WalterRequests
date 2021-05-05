@@ -15,6 +15,22 @@ namespace Operations
             string jsonString = JsonConvert.SerializeObject(jsonOperationTest, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             Console.WriteLine(jsonString);
 
+            var response = Walter.ApiHelper.GetResponse(jsonString);
+            // Parsing JSON content into element-node JObject
+
+            Console.WriteLine(response.Content);
+            var jsonTruc = JsonConvert.DeserializeObject<JToken>(response.Content);
+            string jsonDeTest = JsonConvert.SerializeObject(jsonTruc, Formatting.Indented);
+            Console.WriteLine(jsonDeTest);
+
+            Console.WriteLine("");
+
+            var jObject = JObject.Parse(response.Content);
+            Console.WriteLine(jObject["TaskOutput"]["Results"][0]["Vc"]); //Récupérer la vitesse de coupe
+
+            Console.WriteLine("");
+
+
             JsonOperation jsonOperation = new JsonOperation()
             {
                 AlternativeFlowMode = "OnNeed",
@@ -100,16 +116,10 @@ namespace Operations
             jsonString = JsonConvert.SerializeObject(jsonOperation, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             Console.WriteLine(jsonString);
 
-            var response = Walter.ApiHelper.GetResponse(jsonOperation);
-            // Parsing JSON content into element-node JObject
-            var jObject = JObject.Parse(response.Content);
-            Console.WriteLine(response);
+            string target = "http://google.com/";
+            //https://waltergpsconnecttest.azurewebsites.net/touchtime/Walter?UserID=TestUser02&TibpID=TestUser02&Language=en-US&UnitSystem=Metric&Origin=*&EnableSolutionDetailOnly=false&SiteCountryCode=DE&WgaSendToButtonSetting=#/ars/parameters?isInitialReview=false
+            System.Diagnostics.Process.Start(@target);
 
-            //Extracting Node element using Getvalue method
-            JsonParser.TaskOutput taskOutput = jObject.GetValue("TaskOutput").ToObject<JsonParser.TaskOutput>;
-
-            Console.WriteLine(taskOutput.COOLANTSTYLE);
-            
             /*
             try
             {
