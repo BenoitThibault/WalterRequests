@@ -1,11 +1,3 @@
-using JsonParser;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RestSharp;
 using Newtonsoft.Json.Linq;
 
@@ -13,27 +5,6 @@ namespace Walter
 {
     class WalterProcessor
     {
-        /*
-        public static async Task<string> DisplayRequest()
-        {
-            string url = "http://ip-api.com/json";
-
-            using (HttpResponseMessage response = await Walter.ApiHelper.ApiClient.GetAsync(url))
-            {
-                // Si la réponse HTTP renvoie le Status Code 200:
-                if(response.IsSuccessStatusCode)
-                {
-                    usefulData usefulData = await response.Content.ReadAsAsync<usefulData>();
-                    string jsonString = JsonConvert.SerializeObject(usefulData, Formatting.Indented);
-                    return jsonString;
-                }
-                //Sinon, renvoie une exception
-                else
-                {
-                    throw new Exception(response.ReasonPhrase); //Renvoie la raison de l'erreur.
-                }
-            }
-        } */
 
         // retourne le token 
         public static string GetToken()

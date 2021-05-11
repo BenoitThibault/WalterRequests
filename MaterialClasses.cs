@@ -25,9 +25,13 @@ namespace JsonParser
         public string OrderCode { get; set; } = "DC170-03-10.000A1-WJ30EJ";
     }
 
-    public class TaskOutput
+    public class SelectMaterialInGPS
     {
-        public string COOLANTSTYLE { get; set; }
-
+        public bool UseDefaultValues { get; set; } = true;
+        public string UnitSystem { get; set; } = "Metric";
+        public string Language { get; set; } = "en-US";
+        public string productArea { get; set; } = "Walter";
+        public string UserName { get; set; } = "TestUserIdforJanus";
     }
+
 }

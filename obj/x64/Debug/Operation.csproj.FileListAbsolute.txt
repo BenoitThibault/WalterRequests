@@ -1,0 +1,14 @@
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\ConsoleApp1.exe.config
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\ConsoleApp1.exe
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\ConsoleApp1.pdb
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\Newtonsoft.Json.dll
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\RestSharp.dll
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\System.Net.Http.Formatting.dll
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\Newtonsoft.Json.xml
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\RestSharp.xml
+C:\Users\BenoitThibault\source\repos\Operations\bin\x64\Debug\System.Net.Http.Formatting.xml
+C:\Users\BenoitThibault\source\repos\Operations\obj\x64\Debug\Operation.csprojAssemblyReference.cache
+C:\Users\BenoitThibault\source\repos\Operations\obj\x64\Debug\Operation.csproj.CoreCompileInputs.cache
+C:\Users\BenoitThibault\source\repos\Operations\obj\x64\Debug\Operation.csproj.CopyComplete
+C:\Users\BenoitThibault\source\repos\Operations\obj\x64\Debug\ConsoleApp1.exe
+C:\Users\BenoitThibault\source\repos\Operations\obj\x64\Debug\ConsoleApp1.pdb

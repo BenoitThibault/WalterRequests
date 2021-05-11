@@ -13,10 +13,9 @@ namespace Walter
     {
         public static HttpClient ApiClient { get; set; }
 
-        public static IRestResponse GetResponse(string jsonString)
+        public static IRestResponse GetResponse(string jsonString, string url)
         {
-            string operationTypeName = "GetCuttingDataForHoleOnSolidMaterial"; //Par la suite: faire en sorte que ça soit adapatable en fonction du bon type de classe
-            var client = new RestClient("http://WalterGPSConnectTest.azurewebsites.net/WGCApi/V1.0/" + operationTypeName);
+            var client = new RestClient(url);
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/json");
             string token = Walter.WalterProcessor.GetToken();
