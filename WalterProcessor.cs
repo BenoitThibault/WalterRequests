@@ -6,7 +6,7 @@ namespace Walter
     class WalterProcessor
     {
 
-        // retourne le token 
+        // Retourne le token 
         public static string GetToken()
         {
             var client = new RestClient("https://waltergpsconnecttest.azurewebsites.net/sts/connect/token");
@@ -22,15 +22,9 @@ namespace Walter
             request.AddParameter("user_id", "Janususer");
             request.AddParameter("instance_id", "Janusinstance");
             IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
 
-            // Parsing JSON content into element-node JObject
             var jObject = JObject.Parse(response.Content);
-
-            //Extracting Node element using Getvalue method
             string token = jObject.GetValue("access_token").ToString();
-            // Let us print the city variable to see what we got
-            //Console.WriteLine("Access token is: " + token);
 
             return token;
         }

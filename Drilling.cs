@@ -3,8 +3,11 @@ using System.Collections.Generic;
 
 namespace JsonParser
 {
+    // Paramètres uniques à la Classe Drilling
     public class Drilling : Operation
     {
+        [JsonIgnore]
+        public string operationTypeName = "GetCuttingDataForHoleOnSolidMaterial"; //Nom pour Drilling
         public bool BHFP { get; set; } = true; //Blind hole
         public bool? CHFP { get; set; } //Cross hole
         public double DEPTHMF { get; set; } = 10.0; //Depth

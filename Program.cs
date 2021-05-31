@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Operations
 {
@@ -15,11 +14,10 @@ namespace Operations
             // Test de création d'un json avec les paramètres par défaut et de récupération des données grâce à l'API et utiliser ces données  //
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             JsonOperation jsonOperationTest = new JsonOperation();
-            string jsonString = JsonConvert.SerializeObject(jsonOperationTest, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = Walter.ApiHelper.convertToJson(jsonOperationTest);
             Console.WriteLine(jsonString); //Affiche le json qu'on souhaite envoyé à l'API
 
-            string operationTypeName = "GetCuttingDataForHoleOnSolidMaterial"; //Pour Drilling
-            string url = "http://WalterGPSConnectTest.azurewebsites.net/WGCApi/V1.0/" + operationTypeName;
+            string url = "http://WalterGPSConnectTest.azurewebsites.net/WGCApi/V1.0/" + jsonOperationTest.TaskInput.operationTypeName;
             var response = Walter.ApiHelper.GetResponse(jsonString, url); //Envoie le json construit et retourne le json.
             Console.WriteLine(response.Content); //Affiche le json retourné
 
@@ -37,22 +35,11 @@ namespace Operations
             ///////////////////////////////////////////////////////////////////////////////////////////
             // Test du renvoie de l'url pour ouvrir la page en cas du renvoie d'une erreur par l'API //
             ///////////////////////////////////////////////////////////////////////////////////////////
-            //SelectMaterialInGPS materialInGPS = new SelectMaterialInGPS();
-            //jsonString = JsonConvert.SerializeObject(materialInGPS, Formatting.Indented);
-
-            url = "https://WalterGPSConnectTest.azurewebsites.net/WGCApi/V1.0/SelectMaterialInGPS";
-            response = Walter.ApiHelper.GetResponse(jsonString, url);
-            Console.WriteLine(response.Content);
-
-            jObject = JObject.Parse(response.Content);
-            //string target = "https://waltergpsconnecttest.azurewebsites.net/touchtime/Walter?UserID=TestUser02&TibpID=" + jsonOperation.TaskInput.UserName + "&Language=" + jsonOperation.TaskInput.LANGUAGE + "&UnitSystem=" + jsonOperation.TaskInput.UNITSYSTEM + "&Origin=*&EnableSolutionDetailOnly=false&SiteCountryCode=DE&WgaSendToButtonSetting=#/ars/parameters?isInitialReview=false";
-            string correlationId = jObject.GetValue("CorrelationId").ToString();
             
-            string target = "https://waltergpsconnecttest.azurewebsites.net/touchtime/Walter?CorrelationId=" + correlationId + "&Origin=*";
-            Console.WriteLine(target);
-            System.Diagnostics.Process.Start(@target);
-
-            Console.WriteLine("");
+            //Situation d'erreur, cela devrait ouvrir une page web
+            jsonOperationTest.TaskInput.DEPTHMF = 100.0;
+            jsonString = Walter.ApiHelper.convertToJson(jsonOperationTest);
+            response = Walter.ApiHelper.GetResponse(jsonString, url);
 
 
             /////////////////////////////////////////////////////////////////
@@ -64,14 +51,10 @@ namespace Operations
                 TaskInput = new Drilling()
                 {
                     UseDefaultValues = true,
-                    // Try to get a succeed request with all the parameters if possible.
-
-
                     PHDR = 5,
                     PHDNTOL = 5,
                     PHDXTOL = 5,
                     MachineID = "machine_cc_DefaultallCoolants",
-
                     RecommendAdditionalAssemblyItems = true,
                     EnableSendToButton = true,
                     PreselectedItemMaximumRank = 3,
@@ -80,7 +63,6 @@ namespace Operations
                     LANGUAGE = "en-US",
                     UserName = "TestUser02",
                     CountryCode = "fr",
-
                     BHFP = true, //Hope type: Blind hole
                     CHFP = true, // Cross hole
                     DEPTHMF = 4.0, //Profondeur
@@ -138,10 +120,16 @@ namespace Operations
                 }
             };
 
-            jsonString = JsonConvert.SerializeObject(jsonOperation, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            jsonString = Walter.ApiHelper.convertToJson(jsonOperation);
             Console.WriteLine(jsonString); //Affiche le json construit sous forme indentée.
 
             Console.ReadLine();
         }
+
+        
     }
- }
+
+    
+}
+
+

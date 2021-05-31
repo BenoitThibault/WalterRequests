@@ -1,6 +1,7 @@
 ﻿using JsonParser;
 using System.Collections.Generic;
 
+// Paramètres communs à tous les types d'opérations
 public class Operation
 {
 	public List<string> COOLANTSTYLE { get; set; } = new List<string> { "INT", "EXT", "DRY" }; //Coolant style
